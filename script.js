@@ -2,7 +2,7 @@
 
 
 var mymap = L.map('mapid').setView([48.8562368, 2.3078572], 10);
-
+var layerGroup = L.layerGroup().addTo(mymap);
 
 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -60,16 +60,25 @@ mymap.on('click', onMapClick);
 
 
 //récupérer les données de l'API : fonction
-async function getData() {
-	let url = "https://opendata.paris.fr/api/records/1.0/search/?dataset=que-faire-a-paris-&q=date_start+%3E%3D+%23now()+AND+date_start+%3C+%23now(months%3D1)&lang=FR&rows=50&facet=category&facet=tags&facet=address_zipcode&facet=address_city&facet=pmr&facet=blind&facet=deaf&facet=access_type&facet=price_type&facet=event&facet=facets";
-	let response = await fetch(url);
+async function getData(query) {
+  if(query == undefined) {
+    query = "";
+  };
+	let url = "https://opendata.paris.fr/api/records/1.0/search/?dataset=que-faire-a-paris-&q=date_start+%3E%3D+%23now()+AND+date_start+%3C+%23now(months%3D1) + " + query + " &lang=FR&rows=50 &facet=category&facet=tags&facet=address_zipcode&facet=address_city&facet=pmr&facet=blind&facet=deaf&facet=access_type&facet=price_type&facet=event&facet=facets";
+  console.log(url);
+  let response = await fetch(url);
     
   let data = await response.json();
+
+  layerGroup.clearLayers();
 
   data.records.forEach(function(event) {
 		// le titre de l'événement
     let title = event.fields.title;
-
+    let cover_url = event.fields.cover_url;
+    let price_type= event.fields.price_type; 
+    let date_description= event.fields.date_description;
+    let lead_text= event.fields.lead_text;
 		// si jamais le champs latitude/longitude manque
 		// on ignore cet événement
 		if (!event.fields.lat_lon) {
@@ -89,14 +98,39 @@ async function getData() {
         let marker = L.marker([latitude, longitude]);
 
         //afficher une pop up avec la fonction bindPopup
-       marker.bindPopup(title,"<b>Bienvenue</b><br>au Louvre").openPopup();
+        let content = "Événement : " + "<br>" + "<br><div class='title'>" + title + "</div>" +
+        "<br>" + "<img class='imgpop' src='" + cover_url + "'>"+ "<br>" + price_type + "<br>" + date_description + "<br>" + lead_text;
+       marker.bindPopup(content).openPopup();
+       console.log(event.fields)
         //..
+     
 
+        
         //ajouter à carte
-        marker.addTo(mymap);
+        marker.addTo(layerGroup);
 
 		// .. mais ce serait mieux de les afficher sur la carte !
     })
 };
 
-getData();
+getData("concerts");
+
+function onFormSubmit(event) {
+  event.preventDefault();
+  console.log("le formulaire a bien été envoyé");
+  console.log(searchInput.value);
+  getData(searchInput.value)
+};
+
+function onInputClick(event) {
+  event.preventDefault();
+  getData("classique");
+}
+function onInputClick1(event) {
+  event.preventDefault();
+  getData("jazz");
+}
+function onInputClick2(event) {
+  event.preventDefault();
+  getData("HIP HOP");
+}

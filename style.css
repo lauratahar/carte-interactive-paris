@@ -1,14 +1,99 @@
 /* votre code CSS */
 
-h1 {
-  color:black;
-  height: 50px;
+body {
   font-family: 'Merriweather', serif;
+}
+
+h1 {
+  color:rgb(88, 24, 85);
+  height: 50px;
+  font-size: 40px;
+  font-family: 'Patrick Hand', cursive;
   margin-left: 15px;
 }
 
+p {
+  margin-left: 15px;
+  font-family: 'Inconsolata', monospace;
+}
+
 #mapid {
-height: calc(100vh - 150px);
+height: calc(90vh - 140px);
 }
 
 
+.imgpop {
+  height: calc(15vh - 20px);
+}
+
+.title {
+font-family: 'Inconsolata', monospace;
+font-weight: bold;
+color: blueviolet;
+font-size: 15px;
+}
+
+
+
+
+
+
+#favoritestyled {
+  border: 1;
+  border-color: blueviolet;
+  line-height: 2.5;
+  padding: 0 20px;
+  font-size: 1rem;
+  border-radius: 15px;
+  background-color: #fff;
+  background: url('img/piano.png') no-repeat center;
+  background-size: 75%;
+  margin: 5px;
+}
+#favoritestyled1 {
+  border: 1;
+  border-color: blueviolet;
+  line-height: 2.5;
+  padding: 0 20px;
+  font-size: 1rem;
+  border-radius: 15px;
+  background-color: #fff;
+  background: url('img/saxophone.png') no-repeat center;
+  background-size: 75%;
+  margin: 5px;
+}
+#favoritestyled2 {
+  border: 1;
+  border-color: blueviolet;
+  line-height: 2.5;
+  padding: 0 20px;
+  font-size: 1rem;
+  border-radius: 15px;
+  background-color: #fff;
+  background: url('img/rap.png') no-repeat center;
+  background-size: 75%;
+  margin: 5px;
+}
+
+
+#searchInput {
+  border-color: blueviolet;
+  border-radius: 15px;
+  height: calc(6vh - 12px);
+  background: center;
+}
+
+.iconbtn {
+  text-align: center;
+  margin-top: 20px;
+
+}
+.submit {
+  border-color: blueviolet;
+  border-radius: 30px;
+  background: url(img/search.png) no-repeat center;
+  background-size: 70%;
+  background-color: white;
+  height: calc(8vh - 4px);
+  color: rgba(255, 255, 255, 0)
+}
