@@ -1,12 +1,14 @@
 /* votre code CSS */
 
 h1 {
-  color: red;
+  color:black;
+  height: 50px;
+  font-family: 'Merriweather', serif;
+  margin-left: 15px;
 }
 
 #mapid {
-height: 400px;
-width: 400px;
+height: calc(100vh - 150px);
 }
 
 

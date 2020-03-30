@@ -55,3 +55,48 @@ function onMapClick(e) {
 }
 
 mymap.on('click', onMapClick);
+
+
+
+
+//récupérer les données de l'API : fonction
+async function getData() {
+	let url = "https://opendata.paris.fr/api/records/1.0/search/?dataset=que-faire-a-paris-&q=date_start+%3E%3D+%23now()+AND+date_start+%3C+%23now(months%3D1)&lang=FR&rows=50&facet=category&facet=tags&facet=address_zipcode&facet=address_city&facet=pmr&facet=blind&facet=deaf&facet=access_type&facet=price_type&facet=event&facet=facets";
+	let response = await fetch(url);
+    
+  let data = await response.json();
+
+  data.records.forEach(function(event) {
+		// le titre de l'événement
+    let title = event.fields.title;
+
+		// si jamais le champs latitude/longitude manque
+		// on ignore cet événement
+		if (!event.fields.lat_lon) {
+			return;
+    };
+
+		// la latitude
+		let latitude = event.fields.lat_lon[0];
+
+		// la longitude
+	  let longitude = event.fields.lat_lon[1];
+		// on pourrait récupérer d'autres infos..
+
+		// pour tester, on les affiche dans la console
+		console.log(title + " " + latitude + " " + longitude);
+
+        let marker = L.marker([latitude, longitude]);
+
+        //afficher une pop up avec la fonction bindPopup
+       marker.bindPopup(title,"<b>Bienvenue</b><br>au Louvre").openPopup();
+        //..
+
+        //ajouter à carte
+        marker.addTo(mymap);
+
+		// .. mais ce serait mieux de les afficher sur la carte !
+    })
+};
+
+getData();
