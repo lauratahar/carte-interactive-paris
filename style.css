@@ -7,7 +7,7 @@ body {
 h1 {
   color:rgb(88, 24, 85);
   height: 50px;
-  font-size: 40px;
+  font-size: 35px;
   font-family: 'Patrick Hand', cursive;
   margin-left: 15px;
 }
@@ -39,7 +39,7 @@ font-size: 15px;
 
 
 #favoritestyled {
-  border: 1;
+  border-width: 2px;
   border-color: blueviolet;
   line-height: 2.5;
   padding: 0 20px;
@@ -51,7 +51,7 @@ font-size: 15px;
   margin: 5px;
 }
 #favoritestyled1 {
-  border: 1;
+  border-width: 2px;
   border-color: blueviolet;
   line-height: 2.5;
   padding: 0 20px;
@@ -63,7 +63,7 @@ font-size: 15px;
   margin: 5px;
 }
 #favoritestyled2 {
-  border: 1;
+  border-width: 2px;
   border-color: blueviolet;
   line-height: 2.5;
   padding: 0 20px;
@@ -89,6 +89,7 @@ font-size: 15px;
 
 }
 .submit {
+  border-width: 2px;
   border-color: blueviolet;
   border-radius: 30px;
   background: url(img/search.png) no-repeat center;

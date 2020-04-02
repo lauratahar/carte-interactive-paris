@@ -7,10 +7,10 @@ var layerGroup = L.layerGroup().addTo(mymap);
 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
     maxZoom: 18,
-    id: 'mapbox/streets-v11',
+    id: 'lauratahar/ck8emixu3260i1io4g4zzxj2x',
     tileSize: 512,
     zoomOffset: -1,
-    accessToken: 'pk.eyJ1IjoianVsaWVua29tcCIsImEiOiJjanR1NGFuYjkxMmNvNDBucGI1aXZ4Y285In0.hiSplFD5CODUd9yxRO_qkg'
+    accessToken: 'pk.eyJ1IjoibGF1cmF0YWhhciIsImEiOiJjazhlbWUweHgxN2FqM3JvYTJxZ2I3MTBnIn0.GBWcwdG1ZVRTjDNQElZ0Qg'
 }).addTo(mymap);
 
 
@@ -134,3 +134,5 @@ function onInputClick2(event) {
   event.preventDefault();
   getData("HIP HOP");
 }
+
+
